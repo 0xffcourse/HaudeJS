@@ -1,0 +1,3 @@
+class Force extends Vector{
+    
+}
