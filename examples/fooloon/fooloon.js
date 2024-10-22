@@ -23,22 +23,22 @@ class Fooloon extends Game{
         this.gun = new this.Gun(
             10,
             0,
-            [20, 20],
+            new Vector([20, 20]),
             [0, 0, 45, 45],
             {"DEFAULT": this.gunSprite},
             "DEFAULT",
-            [0, 0],
-            [0, 0],
+            new Vector([0, 0]),
+            new Vector([0, 0]),
             false
         );
         this.world.spawnEntity(this.gun);
         this.keyboard.keyPressed = (key)=>{
             switch(key){
                 case "ArrowUp":
-                    this.gun.velocity[1] = -5;
+                    this.gun.velocity = new Vector([0, -5]);
                     break;
                 case "ArrowDown":
-                    this.gun.velocity[1] = 5;
+                    this.gun.velocity = new Vector([0, 5]);
                     break;
                 case " ":
                     this.shoot();
@@ -48,7 +48,7 @@ class Fooloon extends Game{
             }
         };
         this.keyboard.keyReleased = (key)=>{
-            this.gun.velocity[1] = 0;
+            this.gun.velocity = new Vector([0, 0]);
         }
     }
     eventLoop(){
@@ -57,7 +57,7 @@ class Fooloon extends Game{
             let balloon = new this.Balloon(
                 5,
                 0,
-                [150+(Math.random()*800), 700],
+                new Vector([150+(Math.random()*800), 700]),
                 [13, 0, 22, 35],
                 {"DEFAULT": this.balloonSprite},
                 "DEFAULT",
@@ -69,12 +69,12 @@ class Fooloon extends Game{
         let bullet = new this.Bullet(
             1,
             0,
-            [this.gun.position[0], this.gun.position[1]],
+            this.gun.position,
             [0, 5, 25, 15],
             {"DEFAULT": this.bulletSprite},
             "DEFAULT",
-            [15, 0],
-            [0, 0],
+            new Vector([15, 0]),
+            new Vector([0, 0]),
             false
         );
         this.world.spawnEntity(bullet);

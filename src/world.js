@@ -17,11 +17,10 @@ class World{
 
     update(){
         for(let entity of this.entities){
-            entity.acceleration = entity.totalForce().components;
+            entity.acceleration = entity.totalForce();
             var motion = Kinematics.motion(entity.position, entity.velocity, entity.acceleration);
             entity.position = motion.position;
             entity.velocity = motion.velocity;
-            entity.acceleration = motion.acceleration;
         }
         return this;
     }
