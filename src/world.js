@@ -9,15 +9,16 @@ class World{
     }
 
     spawnEntity(entity){
-        if(entity.gravitable){
-            entity.applyForce(this.gravity.scale(entity.mass));
-        }
         this.entities.push(entity);
     }
 
     update(){
         for(let entity of this.entities){
+            if(entity.gravitable){
+                entity.applyForce(this.gravity.scale(entity.mass));
+            }
             entity.acceleration = entity.totalForce().scale(1/entity.mass);
+            entity.appliedForces = [];
             var motion = Kinematics.motion(entity.position, entity.velocity, entity.acceleration);
             entity.position = motion.position;
             entity.velocity = motion.velocity;
