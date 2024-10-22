@@ -17,7 +17,7 @@ class World{
 
     update(){
         for(let entity of this.entities){
-            entity.acceleration = entity.totalForce();
+            entity.acceleration = entity.totalForce().scale(1/entity.mass);
             var motion = Kinematics.motion(entity.position, entity.velocity, entity.acceleration);
             entity.position = motion.position;
             entity.velocity = motion.velocity;
